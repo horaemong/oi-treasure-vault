@@ -271,10 +271,42 @@ def write_note(note: Note, lookup: dict[str, Note]) -> None:
 
 
 def write_index(out_rel: Path, title: str, notes: list[Note], folders: list[Path], breadcrumb: str) -> None:
+    if out_rel == Path("index.html"):
+        project_href = rel_url(out_rel, Path("Project") / "index.html")
+        diary_href = rel_url(out_rel, Path("Area") / "100. 일기" / "index.html")
+        area_href = rel_url(out_rel, Path("Area") / "index.html")
+        resource_href = rel_url(out_rel, Path("Recource") / "index.html")
+        archive_href = rel_url(out_rel, Path("Archive") / "index.html")
+        content = f"""
+<h1>OI의 보물창고</h1>
+<p class="lede">Obsidian에 쌓인 프로젝트, 일기, 공부 기록을 웹에서 훑어볼 수 있게 만든 개인 아카이브입니다.</p>
+<div class="home-grid">
+  <a class="home-card primary" href="{project_href}">
+    <span class="card-label">Project</span>
+    <strong>진행 중인 생각과 산출물</strong>
+    <span>유튜브, 블로그, 매매일지, 개발 프로젝트 기록을 먼저 봅니다.</span>
+  </a>
+  <a class="home-card primary" href="{diary_href}">
+    <span class="card-label">Area / 100. 일기</span>
+    <strong>하루 기록</strong>
+    <span>일별 기록과 주간 기록이 모이는 가장 중요한 생활 로그입니다.</span>
+  </a>
+</div>
+<h2>다른 공간</h2>
+<ul class="note-list compact">
+  <li><a href="{area_href}">Area 전체</a><div class="note-meta">지속적으로 관리하는 삶의 영역</div></li>
+  <li><a href="{resource_href}">Recource</a><div class="note-meta">공부, 참고자료, 재사용 가능한 지식</div></li>
+  <li><a href="{archive_href}">Archive</a><div class="note-meta">비활성화되었거나 보관된 기록</div></li>
+</ul>
+"""
+        html_text = render_page("OI의 보물창고", content, out_rel, breadcrumb)
+        dest = OUT / out_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(html_text, encoding="utf-8")
+        return
+
     items: list[str] = []
     for folder in sorted(folders, key=lambda p: p.as_posix().lower()):
-        href = quote((folder / "index.html").as_posix(), safe="/")
-        # Make relative to this index location.
         href = rel_url(out_rel, folder / "index.html")
         items.append(f'<li><a href="{href}">{html.escape(folder.name)}</a><div class="note-meta">folder</div></li>')
     for note in sorted(notes, key=lambda n: n.title.lower()):
@@ -337,5 +369,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
