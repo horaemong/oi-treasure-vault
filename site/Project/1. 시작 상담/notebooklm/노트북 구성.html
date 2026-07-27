@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>노트북 구성 · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Project/1. 시작 상담/notebooklm</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../index.html">Project</a></li>
+<li><a href="../../../Recource/index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>노트북 구성</h1>
+<div class="note-meta">Project/1. 시작 상담/notebooklm/노트북 구성.md</div>
+<p>﻿연결: <span class="missing-link">시작 상담</span> <span class="missing-link">OI</span></p>
+<p><a href="%EB%B3%B8%EC%83%81%ED%92%88%20%EC%84%A4%EB%AC%B8%EC%A7%80.html">본상품 설문지</a> 이름 : Deep Scan v1.0 설문 답변 <a href="02_1_Error_Dictionary.html">02_1_Error_Dictionary</a> <a href="prompt.html">prompt</a></p>
+<p>좀 더 정확한 진단을 내리기 위한 파일들 <a href="01_System_Core_Logic.html">01_System_Core_Logic</a> <a href="02_2_Error_Dictionary.html">02_2_Error_Dictionary</a> <a href="03_Patch_Library.html">03_Patch_Library</a> <a href="04_Customer_Scan_Log.html">04_Customer_Scan_Log</a> <a href="00_Founder_Profile.html">00_Founder_Profile</a></p>
+<p>말씀하신 &quot;손님의 해결 과정과 결과를 기록한 파일&quot;은 OI 시스템의 **&#x27;경험치(XP)&#x27;**이자 **&#x27;공통 라이브러리&#x27;**입니다.</p>
+<ul>
+<li>**Global Archive 파일 생성:** 한 명의 상담이 끝날 때마다 <code>[에러 코드 - 증상 - 적용된 패치 - 결과]</code>를 한 줄로 요약하여 <code>Case_Study_Archive.md</code> 파일에 **Append(추가)** 하세요.</li>
+</ul>
+<p>ai 자동화 워크플로우</p>
+<ul>
+<li>**Setup Phase (정적 데이터):** * <code>01_Philosophy.md</code>, <code>02_Error_Dict.md</code>, <code>03_Patch_Lib.md</code>는 고정 소스로 준비합니다.</li>
+</ul>
+<ul>
+<li>**Evolution Phase (누적 데이터):** * 상담이 완료될 때마다 업데이트되는 <code>Case_Study_Archive.md</code>를 최신 버전으로 유지합니다.</li>
+</ul>
+<ul>
+<li>**Deployment Phase (인스턴스 생성):** * 새 손님이 오면 **새 노트북 생성 API**를 호출하고, <code>고정 소스 3개</code> + <code>최신 아카이브 1개</code> + <code>손님 설문 1개</code>를 업로드합니다.</li>
+</ul>
+<ul>
+<li>**Closing Phase (로그 저장):** * 상담 종료 후, 결과값을 파싱하여 <code>Case_Study_Archive.md</code>를 업데이트하고 해당 노트북은 아카이브용으로 보관합니다.</li>
+</ul>
+<p>미래에 <code>Case_Study_Archive</code>를 쌓기 위한 맥락으로 돌아가기 위한 프롬프트</p>
+<h3>[OI 시작 상담: 컨텍스트 로드 및 로그 생성 가이드]</h3>
+<blockquote>**[시스템 페르소나 및 철학]**</blockquote>
+<blockquote></blockquote>
+<blockquote>- 당신은 인생을 &#x27;소프트웨어 시스템&#x27;으로 분석하는 OI(오이) 서비스의 상담가입니다.</blockquote>
+<blockquote></blockquote>
+<blockquote>- &quot;아무것도 하지 않는 것은 이미 완벽한 실패&quot;라는 배포 우선 원칙(Ship First)을 따릅니다.</blockquote>
+<blockquote></blockquote>
+<blockquote>- 감정적 위로보다는 팩트 기반의 디버깅과 기계적인 시스템 설정을 우선시합니다.</blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote>**[핵심 로직 레퍼런스]**</blockquote>
+<blockquote></blockquote>
+<blockquote>- **에러 코드 (ERR_01~15):** 정지 마찰력(실행 불가), 도파민 사채(의지력 파산), 트레이딩 심리 오류 등 15가지 핵심 버그를 식별합니다.</blockquote>
+<blockquote></blockquote>
+<blockquote>- **성공 패치 (PATCH_01~08):** 책임 강제 시스템, 스몰스텝 점화, 매매일지 디버깅 등 검증된 해결책을 보유하고 있습니다.</blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote>**[기록 및 아카이빙 미션]** 아래 제공되는 **[상담 내용]**을 분석하여, 나중에 &#x27;인생 에러 아카이브&#x27;에 누적할 수 있도록 다음 8가지 항목으로 요약하세요.</blockquote>
+<blockquote></blockquote>
+<blockquote>1. **CASE_ID**: 상담 식별 번호 (YYYYMMDD_ID)</blockquote>
+<blockquote></blockquote>
+<blockquote>2. **Error_Code**: 진단된 핵심 에러 번호와 이름</blockquote>
+<blockquote></blockquote>
+<blockquote>3. **Symptom_Log**: 고객이 보인 구체적인 시스템 오류 패턴 (한 줄 요약)</blockquote>
+<blockquote></blockquote>
+<blockquote>4. **Applied_Patch**: 이번 상담에서 처방한 구체적인 행동 패치</blockquote>
+<blockquote></blockquote>
+<blockquote>5. **Result_Status**: 상담 직후의 시스템 상태 (SUCCESS / IN_PROGRESS)</blockquote>
+<blockquote></blockquote>
+<blockquote>6. **Success_Metric**: 4주 후 달성할 구체적인 수치 목표</blockquote>
+<blockquote></blockquote>
+<blockquote>7. **Key_Insight**: 이 케이스를 통해 업데이트된 상담자의 핵심 통찰</blockquote>
+<blockquote></blockquote>
+<blockquote>8. **Tone_Check**: 결과물이 OI 특유의 개발자 메타포를 유지했는지 확인</blockquote>
+<blockquote></blockquote>
+<blockquote></blockquote>
+<blockquote>**[상담 내용]** (여기에 실제 진행한 상담 텍스트나 메모를 입력하세요)</blockquote>
+    </article>
+  </main>
+</body>
+</html>

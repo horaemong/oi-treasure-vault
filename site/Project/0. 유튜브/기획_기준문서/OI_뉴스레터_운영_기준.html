@@ -1,0 +1,101 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OI 뉴스레터 운영 기준 · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Project/0. 유튜브/기획_기준문서</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../index.html">Project</a></li>
+<li><a href="../../../Recource/index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>OI 뉴스레터 운영 기준</h1>
+<div class="note-meta">Project/0. 유튜브/기획_기준문서/OI_뉴스레터_운영_기준.md</div>
+<h1>OI 뉴스레터 운영 기준</h1>
+<p>연결: <a href="OI_%EB%B8%8C%EB%9E%9C%EB%93%9C_%EC%B5%9C%EC%8B%A0_%EA%B8%B0%EC%A4%80.html">OI_브랜드_최신_기준</a> <a href="OI_%EB%B8%8C%EB%9E%9C%EB%93%9C_%EC%BB%A8%EC%85%89_%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%ED%9A%8D%EC%9A%A9.html">OI_브랜드_컨셉_유튜브_기획용</a> <a href="../../%ED%95%B4%EC%99%B8%EC%84%A0%EB%AC%BC/%EB%A7%A4%EB%A7%A4%EC%9D%BC%EC%A7%80%20%EC%9A%B4%EC%98%81%20%EB%A3%A8%ED%8B%B4.html">매매일지 운영 루틴</a></p>
+<p>관련 원료 폴더: <code>F:\workspace\obsidian\para\Area\100. 일기</code></p>
+<h2>목적</h2>
+<p>OI 주간 뉴스레터는 일간 일지를 모아 실패, 감정, 남은 것, 재시작의 이야기를 만드는 관계 채널이다.</p>
+<p>성공 공식이나 투자법을 가르치는 글이 아니라, 멈춘 사람이 다시 시작 가능한 행동을 설계하는 과정을 보여준다.</p>
+<h2>일간 일지의 역할</h2>
+<p>일간 일지는 완성된 글이 아니라 주간 뉴스레터의 원료다.</p>
+<p>기본 항목:</p>
+<ul>
+<li>오늘의 한 줄</li>
+<li>오늘 한 일</li>
+<li>오늘 남은 것</li>
+<li>오늘의 아이디어</li>
+</ul>
+<p><code>오늘 한 일</code>은 사용자와 Codex가 함께 채우는 칸이다. 사용자는 개인/offline 행동을 쓰고, Codex와 함께 한 프로젝트 작업은 전역 루틴의 <code>docs/worklog/YYYY-MM-DD.md</code>, <code>진행사항/YYYY-MM-DD.md</code>, 그리고 Codex가 일간지에 남긴 한 문장 요약에서 가져온다. 사용자가 같은 내용을 다시 수동으로 중복 작성할 필요는 없다.</p>
+<p>일간 일지에는 사건보다 감정을 남긴다. 특히 매매 관련 내용은 타점, 손익, 지표보다 그 순간의 조급함, 두려움, 분노, 회복, 남은 감정을 기록한다.</p>
+<h2>일지 날짜 기준</h2>
+<p>일지는 달력 날짜가 아니라 생활 날짜를 기준으로 본다.</p>
+<ul>
+<li>한국 시간 기준 오전 5시 전까지는 전날 일지로 본다.</li>
+<li>오전 5시 이후부터 당일 일지로 본다.</li>
+<li>예: 2026-07-26 오전 3시에 &quot;오늘 일지&quot;를 확인하면 <code>2026-07-25.md</code>를 먼저 본다.</li>
+</ul>
+<h2>오늘 일지 생성 기준</h2>
+<p>사용자가 &quot;오늘 일지 생성해줘&quot;라고 요청하면 오전 5시 기준 생활 날짜로 파일을 찾는다.</p>
+<ul>
+<li>파일이 없으면 <code>Project/Template/Daily.md</code>를 기준으로 만들고, 이미 전역 기록에 남은 Codex 작업은 <code>오늘 한 일</code>에 채워 넣는다.</li>
+<li>파일이 있으면 <code>오늘 한 일</code>을 먼저 보고 아직 들어가지 않은 Codex 작업 요약만 추가한다.</li>
+<li>사용자가 쓴 감정, 아이디어, 매매일지는 덮어쓰지 않는다.</li>
+<li>사용자는 개인/offline 행동과 Codex가 알 수 없는 감정 기록만 추가하면 된다.</li>
+</ul>
+<h2>주간 운영 리듬</h2>
+<ul>
+<li>주간 일지는 일요일 마감 후 정리한다.</li>
+<li>블로그나 뉴스레터 발행/업로드는 월요일에 한다.</li>
+<li>일요일 밤부터 월요일 오전 5시 전까지는 일요일 생활 날짜로 보고, 그 주의 마지막 기록까지 포함한다.</li>
+<li>OI 주간 뉴스레터와 주간 매매일지는 같은 월요일에 준비하더라도 산출물은 분리한다.</li>
+</ul>
+<h2>주간 뉴스레터 작성 원칙</h2>
+<ul>
+<li>AI는 대필자가 아니라 편집자로 쓴다.</li>
+<li>감정과 강한 문장은 일간 일지 원문에서 가져온다.</li>
+<li>매끈한 자기계발 문장보다 조금 거칠어도 실제 감정이 느껴지는 문장을 우선한다.</li>
+<li>매주 새로운 구조를 만들지 않고 같은 질문으로 반복 추적한다.</li>
+</ul>
+<p>반복 질문:</p>
+<ul>
+<li>계속 반복된 문제는 무엇인가?</li>
+<li>자주 나온 감정은 무엇인가?</li>
+<li>그래도 좋아진 부분은 무엇인가?</li>
+<li>다음 주에 줄일 행동 하나는 무엇인가?</li>
+</ul>
+<h2>매매일지와의 분리</h2>
+<p>주간 매매일지는 별도 블로그용 산출물로 분리한다.</p>
+<ul>
+<li>매매일지: 타점, 진입, 손익절, 리스크, 원칙 준수, 다음 매매 패치</li>
+<li>OI 뉴스레터: 그 매매 앞에 앉아 있던 사람의 감정, 실패, 재시작 구조</li>
+</ul>
+<p>같은 사건을 쓰더라도 목적이 다르다. 매매일지는 차트를 복기하고, 뉴스레터는 그 차트 앞의 나를 복기한다.</p>
+<h2>다음에 볼 것</h2>
+<ul>
+<li><code>C:\Users\user\.codex\skills\oi-journal-newsletter\SKILL.md</code></li>
+<li><code>F:\workspace\obsidian\para\Area\100. 일기\주간 일지 템플릿.md</code></li>
+<li><code>F:\workspace\obsidian\para\Area\100. 일기\주간 매매일지 템플릿.md</code></li>
+</ul>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>c언어 포인터 · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Project/블로그/0. 초안</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../index.html">Project</a></li>
+<li><a href="../../../Recource/index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>c언어 포인터</h1>
+<div class="note-meta">Project/블로그/0. 초안/c언어 포인터.md</div>
+<p>﻿--- date: 2025-05-20 tags:</p>
+<ul>
+<li>블로그</li>
+<li>c</li>
+<li>포인터</li>
+<p>---</p>
+</ul>
+<p>연결: <span class="missing-link">블로그</span> <span class="missing-link">블로그 초안</span></p>
+<p>컴퓨터 공학을 전공할 때 처음으로 조건문, 반복문을 벽으로 만나고, 두 번째로 포인터를 크나큰 벽으로 느껴 컴공을 포기하는 사람들이 많다. 보통 조건문, 반복문까지는 어떻게든 해결한다. 하지만 포인터를 이해하지 못하면 그 다음으로 넘어가기가 너무 어렵다. 그 벽을 넘을 힘을 주기 위해 이 글을 쓴다.</p>
+<p>포인터는 변수의 주소값을 가져온다. 원본을 그대로 변경할 수 있다는 것이다. 나는 이 과정을 책으로 설명하겠다.</p>
+<p>https://www.yes24.com/Product/Goods/4333686 예를 들어 이 책을 샀다고 생각하자. 이 책으로 c언어를 공부하는 과정에서 오타를 발견했다. 그 오타를 내 책에서 수정하고 다시 공부를 시작한다. 이 오타를 수정했을 때 다른 모든 책에서 수정이 되지 않을 것이다. 새로 나오는 책에서 오타를 수정하기 위해서는 원본을 수정해야 한다. 오타 수정 요청해 오타를 수정하면 다음 나오는 책부터는 수정본으로 나올 것이다. 이 과정이 포인터를 쓰는 과정이다. 하나하나 풀어서 보자.</p>
+<p>책을 사는 과정은 변수를 선언 할 때 값만 가져오는 일반적인 변수 선언이다. 내가 산 책의 오타를  수정하는 과정은 선언한 변수의 값을 바꾸는 과정이다. 원본을 수정하기 위해서는 출판사에 수정 요청해 수정하는 것이 포인터 변수를 선언해 수정하는 과정이다. 이것을 코드로 표현하겠다.</p>
+<p>original_book = 윤성우의 열혈 C 프로그래밍; // 내 책 수정 char mybook = original_book; mybook = &quot;윤성우의 열혈 C 프로그래밍 수정&quot;;</p>
+<p>// mybook을 수정해도 original_book이 수정 되지 않는다. printf(mybook); // &quot;윤성우의 열혈 C 프로그래밍 수정&quot; 출력 printf(original_book); // &quot;윤성우의 열혈 C 프로그래밍&quot; 출력</p>
+<p>// 출판사에 원본 수정 요청 char * edit_original_book = &amp; original_book</p>
+<ul>
+<li>edit_original_book = &quot;윤성우의 열혈 C 프로그래밍 수정&quot;</li>
+</ul>
+<p>// 원본이 수정 됨 printf(original_book); // &quot;윤성우의 열혈 C 프로그래밍 수정&quot; 출력 printf(edit_original_book); // &quot;윤성우의 열혈 C 프로그래밍 수정&quot; 출력</p>
+<p>이 코드를 보면 알 수 있듯 일반적인 변수로 선언하는 것은 새로운 복사본을 만드는 것이다. 실제로 출력해보면 원본이 수정되지 않음을 알 수 있다.</p>
+<p>포인터를 선언하는 것은 원본을 담는 것이다. 출력해보면 원본이 수정 된것을 확인할 수 있다.</p>
+    </article>
+  </main>
+</body>
+</html>

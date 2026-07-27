@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>확률변수 암기용 공식 모음 · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Project/대학교/2-1학기</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../index.html">Project</a></li>
+<li><a href="../../../Recource/index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>확률변수 암기용 공식 모음</h1>
+<div class="note-meta">Project/대학교/2-1학기/암기용_공식_모음.md</div>
+<p>﻿연결: <span class="missing-link">대학교</span> <span class="missing-link">암기용_공식_모음.md</span></p>
+<h1>확률변수 암기용 공식 모음</h1>
+<h2>1. 공통 공식</h2>
+<h3>이산확률변수</h3>
+<pre><code>E[X] = sum_x x p_X(x)
+E[g(X)] = sum_x g(x)p_X(x)
+var(X) = E[(X - E[X])^2]
+var(X) = E[X^2] - (E[X])^2
+std(X) = sqrt(var(X))</code></pre>
+<h3>연속확률변수</h3>
+<pre><code>P(a &lt;= X &lt;= b) = integral_a^b f_X(x) dx
+E[X] = integral_{-infinity}^{infinity} x f_X(x) dx
+E[g(X)] = integral_{-infinity}^{infinity} g(x)f_X(x) dx
+var(X) = E[X^2] - (E[X])^2</code></pre>
+<h3>선형변환</h3>
+<pre><code>Y = aX + b
+E[Y] = aE[X] + b
+var(Y) = a^2 var(X)</code></pre>
+<h3>기대값의 선형성</h3>
+<pre><code>E[X + Y] = E[X] + E[Y]
+E[aX + bY + c] = aE[X] + bE[Y] + c</code></pre>
+<h3>독립 확률변수</h3>
+<pre><code>X, Y independent
+p_X,Y(x,y) = p_X(x)p_Y(y)
+E[XY] = E[X]E[Y]
+var(X + Y) = var(X) + var(Y)</code></pre>
+<h2>2. 조건부 공식</h2>
+<h3>조건부확률</h3>
+<pre><code>P(A | B) = P(A intersection B) / P(B)</code></pre>
+<h3>조건부 PMF</h3>
+<pre><code>p_{X|Y}(x|y) = p_X,Y(x,y) / p_Y(y)
+p_X,Y(x,y) = p_Y(y)p_{X|Y}(x|y)</code></pre>
+<h3>전체 기대값 정리</h3>
+<pre><code>E[X] = sum_y P(Y = y)E[X | Y = y]</code></pre>
+<h3>조건부 기대값</h3>
+<pre><code>E[X | Y = y] = sum_x x p_{X|Y}(x|y)
+E[g(X) | Y = y] = sum_x g(x)p_{X|Y}(x|y)</code></pre>
+<h2>3. 결합 PMF</h2>
+<pre><code>p_X,Y(x,y) = P(X = x, Y = y)
+p_X(x) = sum_y p_X,Y(x,y)
+p_Y(y) = sum_x p_X,Y(x,y)
+E[g(X,Y)] = sum_x sum_y g(x,y)p_X,Y(x,y)</code></pre>
+<p>특히:</p>
+<pre><code>E[X] = sum_x sum_y x p_X,Y(x,y)
+E[Y] = sum_x sum_y y p_X,Y(x,y)
+E[XY] = sum_x sum_y xy p_X,Y(x,y)</code></pre>
+<h2>4. CDF 공식</h2>
+<h3>정의</h3>
+<pre><code>F_X(x) = P(X &lt;= x)</code></pre>
+<h3>이산형</h3>
+<pre><code>F_X(x) = sum_{k &lt;= x} p_X(k)
+P(X = k) = F_X(k) - F_X(k-1)</code></pre>
+<h3>연속형</h3>
+<pre><code>F_X(x) = integral_{-infinity}^{x} f_X(t) dt
+f_X(x) = dF_X(x) / dx</code></pre>
+<h3>CDF 성질</h3>
+<pre><code>F_X(x) is non-decreasing
+lim_{x -&gt; -infinity} F_X(x) = 0
+lim_{x -&gt; infinity} F_X(x) = 1</code></pre>
+<h3>최솟값</h3>
+<pre><code>Z = min(X1, X2)
+F_Z(z) = P(Z &lt;= z)
+       = 1 - P(Z &gt; z)
+
+Z &gt; z &lt;=&gt; X1 &gt; z and X2 &gt; z
+
+If X1, X2 independent:
+F_Z(z) = 1 - P(X1 &gt; z)P(X2 &gt; z)</code></pre>
+<h3>최댓값</h3>
+<pre><code>Z = max(X1, X2)
+F_Z(z) = P(Z &lt;= z)
+       = P(X1 &lt;= z, X2 &lt;= z)
+
+If X1, X2 independent:
+F_Z(z) = F_X1(z)F_X2(z)</code></pre>
+<h2>5. 베르누이분포</h2>
+<pre><code>X ~ Bernoulli(p)
+P(X = 1) = p
+P(X = 0) = 1-p
+E[X] = p
+var(X) = p(1-p)</code></pre>
+<h2>6. 이항분포</h2>
+<pre><code>X ~ Binomial(n,p)
+P(X = k) = C(n,k)p^k(1-p)^(n-k),  k = 0,1,...,n
+E[X] = np
+var(X) = np(1-p)</code></pre>
+<h2>7. 기하분포</h2>
+<pre><code>X ~ Geometric(p)
+P(X = k) = (1-p)^(k-1)p,  k = 1,2,3,...
+E[X] = 1/p
+var(X) = (1-p)/p^2</code></pre>
+<h2>8. 포아송분포</h2>
+<pre><code>X ~ Poisson(lambda)
+P(X = k) = e^(-lambda)lambda^k / k!,  k = 0,1,2,...
+E[X] = lambda
+var(X) = lambda</code></pre>
+<h2>9. 음이항분포</h2>
+<pre><code>X = k번째 성공이 나올 때까지 필요한 시행 횟수
+P(X = n) = C(n-1,k-1)p^k(1-p)^(n-k),  n = k,k+1,...</code></pre>
+<h2>10. 이산 균등분포</h2>
+<pre><code>X ~ Uniform{a,a+1,...,b}
+P(X = k) = 1/(b-a+1),  k = a,...,b
+E[X] = (a+b)/2
+var(X) = ((b-a+1)^2 - 1)/12</code></pre>
+<h2>11. 연속 균등분포</h2>
+<pre><code>X ~ Uniform(a,b)
+f_X(x) = 1/(b-a),  a &lt;= x &lt;= b
+E[X] = (a+b)/2
+var(X) = (b-a)^2/12
+P(c &lt;= X &lt;= d) = (d-c)/(b-a)</code></pre>
+<p>특히:</p>
+<pre><code>X ~ Uniform(0,1)
+f_X(x) = 1,  0 &lt;= x &lt;= 1
+P(X &gt; z) = 1-z,  0 &lt;= z &lt;= 1
+P(X &lt;= z) = z,  0 &lt;= z &lt;= 1</code></pre>
+<h2>12. 지수분포</h2>
+<pre><code>X ~ Exponential(lambda)
+f_X(x) = lambda e^(-lambda x),  x &gt;= 0
+E[X] = 1/lambda
+var(X) = 1/lambda^2
+P(X &gt; a) = e^(-lambda a)
+P(X &lt;= a) = 1 - e^(-lambda a)</code></pre>
+<p>무기억성:</p>
+<pre><code>P(X &gt; s+t | X &gt; t) = P(X &gt; s)</code></pre>
+<h2>13. 정규분포</h2>
+<pre><code>X ~ Normal(mu, sigma^2)
+E[X] = mu
+var(X) = sigma^2</code></pre>
+<p>표준화:</p>
+<pre><code>Z = (X - mu) / sigma
+Z ~ Normal(0,1)</code></pre>
+<p>표준정규분포:</p>
+<pre><code>Phi(z) = P(Z &lt;= z)</code></pre>
+<p>확률 변환:</p>
+<pre><code>P(X &lt;= a) = Phi((a - mu)/sigma)
+P(X &gt;= a) = 1 - Phi((a - mu)/sigma)
+P(a &lt;= X &lt;= b) = Phi((b - mu)/sigma) - Phi((a - mu)/sigma)</code></pre>
+<p>선형변환:</p>
+<pre><code>If X ~ Normal(mu, sigma^2),
+Y = aX + b
+Y ~ Normal(a mu + b, a^2 sigma^2)</code></pre>
+<h2>14. 두 번 연속 성공 기대 횟수</h2>
+<pre><code>p = success probability
+q = 1-p
+
+E0 = 직전 시행이 성공이 아닌 상태에서 남은 기대 횟수
+E1 = 직전 시행이 성공인 상태에서 남은 기대 횟수
+
+E0 = p(1 + E1) + q(1 + E0)
+E1 = p(1 + 0) + q(1 + E0)
+
+E0 = (1+p)/p^2</code></pre>
+<h2>15. 자주 쓰는 여사건</h2>
+<pre><code>P(X &gt;= 1) = 1 - P(X = 0)
+P(X &gt; a) = 1 - P(X &lt;= a)
+P(X &lt;= a) = 1 - P(X &gt; a)</code></pre>
+<p>연속형:</p>
+<pre><code>P(X &lt; a) = P(X &lt;= a)
+P(X &gt; a) = P(X &gt;= a)
+P(X = a) = 0</code></pre>
+<h2>16. 한눈에 보는 평균과 분산</h2>
+<pre><code>Bernoulli(p):              E[X] = p,          var(X) = p(1-p)
+Binomial(n,p):             E[X] = np,         var(X) = np(1-p)
+Geometric(p):              E[X] = 1/p,        var(X) = (1-p)/p^2
+Poisson(lambda):           E[X] = lambda,     var(X) = lambda
+Discrete Uniform(a,...,b): E[X] = (a+b)/2,    var(X) = ((b-a+1)^2-1)/12
+Continuous Uniform(a,b):   E[X] = (a+b)/2,    var(X) = (b-a)^2/12
+Exponential(lambda):       E[X] = 1/lambda,   var(X) = 1/lambda^2
+Normal(mu,sigma^2):        E[X] = mu,         var(X) = sigma^2</code></pre>
+    </article>
+  </main>
+</body>
+</html>

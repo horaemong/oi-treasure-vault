@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>파이썬 함수 잘 만드는 법 · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Project/블로그/0. 초안</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../index.html">Project</a></li>
+<li><a href="../../../Recource/index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>파이썬 함수 잘 만드는 법</h1>
+<div class="note-meta">Project/블로그/0. 초안/파이썬 함수 잘 만드는 법.md</div>
+<p>﻿--- date: 2025-06-16 tags:</p>
+<ul>
+<li>블로그</li>
+<p>---</p>
+</ul>
+<p>연결: <span class="missing-link">블로그</span> <span class="missing-link">블로그 초안</span></p>
+<p>함수는 죽은 호랑이의 가죽 / 죽은 사람의 이름과 같은 것이다. 함수는 죽으면 본인의 기능을 남기는 것이다.</p>
+<p>파이썬 함수  쓰는 법</p>
+<p>def 함수 이름(매개 변수 1, 매개 변수 2): 함수 기능 return 남기고 싶은 값</p>
+<p>def 함수 이름(* 매개 변수 이름): 함수 기능 return 남기고 싶은 값</p>
+<p>이런 식으로 쓰면 된다.</p>
+<p>매개 변수는 함수에서 값을 받아오는 역할을 한다. 매개 변수 앞에 * 을 붙이면 여러개를 받아올 수 있다.</p>
+<ul>
+<li>이 받아오는 변수의 형태</li>
+<li>리스트 형태  </li>
+<p>** 딕셔너리 형태</p>
+</ul>
+<p>함수 잘 만드는 법</p>
+<p>호사유피라는 사자성어 아는가? <span class="note-meta">이미지/첨부: mqdefault 1.jpg</span></p>
+<p>함수는 죽은 호랑이의 가죽 / 죽은 사람의 이름과 같은 것이다. 함수는 죽으면 본인의 기능을 남기는 것이다.</p>
+<p>함수는 return을 이용해 변수에 값을 담거나, return을 안쓰고 오직 기능만 하고 사라진다.</p>
+<p>return은 호랑이 가죽, return을 쓰지 않는 함수는 사람의 이름이다.</p>
+<ol>
+<li>return의 경우</li>
+</ol>
+<p>아래의 함수는 특정 사이트에서 news의 정보를 끌어오는 기능을 하는 함수이다. 함수의 기능 구현을 이해할 필요 없다. 아래에 return 부분만 보자.</p>
+<pre><code>def news_api(request):  
+    # 옵션 생성  
+    options = webdriver.ChromeOptions()  
+    # 창 숨기는 옵션 추가  
+    options.add_argument(&quot;headless&quot;)  
+    driver = webdriver.Chrome(options=options)  
+    driver.get(&quot;https://coinness.com/&quot;)  
+    time.sleep(2)  
+    titles = driver.find_elements(By.CLASS_NAME, &quot;BreakingNewsTitle-sc-glfxh-4&quot;)  
+    contents = driver.find_elements(By.CLASS_NAME, &quot;BreakingNewsContents-sc-glfxh-5&quot;)  
+	
+	
+    news = [  
+        {&quot;titles&quot;: titles[0].text, &quot;contents&quot;: contents[0].text, &quot;id&quot;: 1},  
+        {&quot;titles&quot;: titles[1].text, &quot;contents&quot;: contents[1].text, &quot;id&quot;: 2},  
+        {&quot;titles&quot;: titles[2].text, &quot;contents&quot;: contents[2].text, &quot;id&quot;: 3},  
+    ]  
+  
+    return news</code></pre>
+<pre><code>news = news_api(request)</code></pre>
+<p>이 함수는 값을 남기기에 사용하기 위해서는 변수에 담아줘야 한다. 이렇게 선언하면 함수는 본인의 기능을 하고 news에 담긴 값을 남긴다. news라는 변수에 news 데이터가 담긴 것이다. 함수는 죽고 news라는 가죽을 남기고 간 것이다.</p>
+<ol>
+<li>return을 쓰지 않는 경우</li>
+</ol>
+<p>아래의 함수가 파이썬 예제가 아니라서 미안하다. 전에 내가 만들었던 파이썬 프로젝트가 어디로 갔는지 모르겠다. 어쨌든 앱을 개발할때 쓰이는 flutter에서 쓴 함수이다. 갤러리에서 이미지를 가져오는 함수이다. 아래에 return이 있는지 보자.</p>
+<pre><code>Future&lt;void&gt; _pickImage() async {
+
+    ImagePicker().pickImage(source: ImageSource.gallery).then((image) {
+
+      if (image != null) {
+
+        setState(() {
+
+          file = image;
+
+          imageList.insert(imageCount, image.path);
+
+          imageCount += 1;
+
+        });
+
+        // print(imageList[imageCount - 1]!.path);
+
+      }
+
+    });
+
+  }</code></pre>
+<p>이 함수는 보면 return을 쓰지 않은 함수이다. 이 함수는 기능만 하고 살아지는 것이다. 보통 전역변수 위치에 있는 공통적으로 쓰이는 값을 변경하는 경우 return을 안 쓰는 경우가 많다. 이 함수는 죽고 전역에 영향을 미치는 것이다. 유명한 사람은 많은 사람에게 영향을 줬기에 이름이 남은 것이다. return 없는 함수도 이와 같다. 이 함수는 역할을 다하고 죽으며 전역에 영향을 미치고 가는 것이다.</p>
+<p>그럼 함수의 내용은? 함수에는 어떤 내용이 들어가야 할까?</p>
+<ol>
+<li>똑같은 코드가 여러 번 들어가는 경우</li>
+<li>코드의 가독성이 떨어질 때</li>
+<li>하나의 함수의 내용은 한 가지만</li>
+</ol>
+<p>글을 잘 쓰는 법과 굉장히 비슷하다고 생각한다.</p>
+<ol>
+<li>같은 내용(함수)이 들어가면 글은 재미없다. </li>
+<li>글의 과한 tmi(함수)가 들어가면 가독성이 떨어진다.</li>
+<li>한 문장(함수)에는 한 가지의 내용(함수)만</li>
+</ol>
+<p>어떤가 정말 비슷하지 않나? 코딩도 하나의 언어이다. 컴퓨터랑 대화하는 언어이다. 코딩을 잘 하는 방법은 우리가 언어를 잘하기 위해 하는 노력과 굉장히 비슷하다.</p>
+    </article>
+  </main>
+</body>
+</html>

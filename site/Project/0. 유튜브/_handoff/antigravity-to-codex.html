@@ -1,0 +1,96 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Antigravity To Codex · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Project/0. 유튜브/_handoff</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../index.html">Project</a></li>
+<li><a href="../../../Recource/index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>Antigravity To Codex</h1>
+<div class="note-meta">Project/0. 유튜브/_handoff/antigravity-to-codex.md</div>
+<h1>Antigravity To Codex</h1>
+<h2>Goal</h2>
+<p>유튜브 채널 &#x27;OI&#x27;의 10개 론칭 콘텐츠 기획안 및 핵심 매매일지 도구의 로컬 뼈대 파일을 생성하고 구조화한다.</p>
+<h2>Context Read</h2>
+<ul>
+<li><code>context.md</code>: &#x27;OI&#x27;의 브랜드 정체성(&quot;상처 입은 치유자&quot; 페르소나, 행동 치료적 관점)을 확인했습니다.</li>
+<li><code>decisions.md</code>: 수익 인증, 대박 복구 과장, 차트 분석 등을 철저히 배제하고 아날로그적 분위기와 10화 기획안의 큰 틀을 지켜야 함을 확인했습니다.</li>
+<li><code>codex-to-antigravity.md</code>: 코덱스의 직접 요청은 없었으나 유저의 &quot;_handoff 폴더에 정리해서 대화하자&quot;는 지시에 따라 핸드오프를 개시합니다.</li>
+</ul>
+<h2>Recommended Direction</h2>
+<p>리서치 보고서 <code>youtube_market_research_OI.md</code>에서 도출된 10화 분량의 영상 기획 정보(썸네일, 훅, 다음 편 연결 브릿지)를 바탕으로, 각 영상의 구체적인 &#x27;대본 집필 템플릿&#x27;과 시청자 배포용 &#x27;OI 매매기록 일지&#x27; 마크다운 템플릿을 워크스페이스에 생성하는 것이 가장 효과적입니다.</p>
+<h2>Options Considered</h2>
+<ol>
+<li>**모든 10개 영상의 최종 대본을 한 번에 다 쓰기** - 상세 대본은 유저와의 영상별 컨펌 과정이 필요하므로, 한 번에 다 쓰면 수정 공수가 커질 위험(Trade-off)이 있습니다.</li>
+<li>**영상별 기획 정보가 담긴 뼈대 파일(Template)을 생성하여 단계별 집필 준비하기 [선택]** - 코덱스가 각 편의 구조화된 마크다운 파일을 생성하고, 유저와 한 편씩 대본을 고도화할 수 있어 효율적이고 안전합니다.</li>
+<li>**매매일지 양식만 먼저 구현하기** - 콘텐츠 유입 없이는 도구 배포의 효과가 없으므로 콘텐츠 뼈대 구축과 병행해야 합니다.</li>
+</ol>
+<h2>Key Reasoning</h2>
+<ul>
+<li>사용자가 기획된 내용을 옵시디언(Obsidian) 환경에서 유기적으로 링크하고 메모하며 최종 영상 제작 준비를 할 수 있어야 합니다.</li>
+<li>10개의 영상 기획안이 리서치 결과에 존재하므로, 이를 로컬 파일(<code>g:/내 드라이브/obsidian/para/Project/0. 유튜브/contents/</code>)로 신속하게 실체화하는 작업은 코덱스가 가장 잘 수행할 수 있는 작업입니다.</li>
+</ul>
+<h2>Implementation Brief For Codex</h2>
+<p>코덱스는 다음 작업을 로컬 워크스페이스에서 순차적으로 실행해 주세요.</p>
+<ol>
+<li>**콘텐츠 폴더 구조 및 영상별 기획 파일 생성**:</li>
+</ol>
+<ul>
+<li><code>g:/내 드라이브/obsidian/para/Project/0. 유튜브/contents/</code> 디렉토리를 생성합니다.</li>
+<li>1화부터 10화까지의 마크다운 파일(<code>01_채널선언_및_페르소나.md</code>, <code>02_뇌동매매_환경통제.md</code> ... <code>10_다시일어서는법.md</code>)을 신규 생성합니다.</li>
+<li>각 파일의 본문 상단(Frontmatter)에는 리서치 보고서 <code>youtube_market_research_OI.md</code>에 정의된 **제목 후보 3개, 썸네일 카피, 15초 훅, 핵심 보상, 다음 영상 연결 고리**를 이쁘게 이식해 두고, 본문에는 대본을 적을 수 있도록 <code>## 1. 영상 개요</code>, <code>## 2. 15초 훅 상세 스크립트</code>, <code>## 3. 본론 스토리라인</code>, <code>## 4. 결론 및 브릿지</code>, <code>## 5. 제작 체크리스트</code> 구성을 채워 넣어 대본 집필 템플릿을 만들어 줍니다.</li>
+</ul>
+<ol>
+<li>**OI 매매일지 템플릿 생성**:</li>
+</ol>
+<ul>
+<li><code>g:/내 드라이브/obsidian/para/Project/0. 유튜브/resources/</code> 폴더를 생성하고 <code>OI_매매기록일지_템플릿.md</code> 파일을 생성합니다.</li>
+<li>이 템플릿에는 수익금이나 진입가 등의 숫자 기록 공간 대신, **&quot;1. 거래 직전 감정의 온도(1~10)&quot;, &quot;2. 오늘의 물리적 환경 격리 여부&quot;, &quot;3. 뇌동/복수매매를 하도록 나를 찌른 촉발 요인(Trigger)&quot;, &quot;4. 오늘 내가 지킨 1가지 미세 행동과 손절 기록&quot;, &quot;5. 내일 아침 나에게 보내는 경고와 다짐&quot;**을 적을 수 있는 아날로그 감성의 표와 질문 리스트 형태로 작성해 줍니다.</li>
+</ul>
+<ol>
+<li>**프로젝트 대시보드(Readme.md) 업데이트**:</li>
+</ol>
+<ul>
+<li>워크스페이스 루트의 대시보드가 있다면 (없다면 <code>README.md</code> 생성) 해당 10개 영상 파일들과 매매기록 일지로 바로가기 링크를 제공하는 목차를 예쁘게 만들어 줍니다.</li>
+</ul>
+<h2>Files Or Artifacts Likely Involved</h2>
+<ul>
+<li><code>g:/내 드라이브/obsidian/para/Project/0. 유튜브/contents/*.md</code> (신규 파일 10개)</li>
+<li><code>g:/내 드라이브/obsidian/para/Project/0. 유튜브/resources/OI_매매기록일지_템플릿.md</code> (신규 파일)</li>
+<li><code>g:/내 드라이브/obsidian/para/Project/0. 유튜브/README.md</code> (업데이트 혹은 신규)</li>
+<li>분석 보고서 참고: <a href="file:///g:/내 드라이브/obsidian/para/Project/0. 유튜브/antigravity/youtube_market_research_OI.html">youtube_market_research_OI.md</a></li>
+</ul>
+<h2>Constraints</h2>
+<ul>
+<li>**톤앤매너**: 차분하고 진정성 있는 어조를 대본 템플릿 가이드라인으로 유지.</li>
+<li>**수익/기법 절대 금지**: 대본 템플릿 내에 수익성 언급이 끼어들지 못하도록 주의점 기재.</li>
+</ul>
+<h2>Open Questions</h2>
+<ul>
+<li>10개의 영상 기획안 중 유저가 가장 먼저 대본을 작성하고 시범 제작해보고 싶은 &#x27;최우선 1개 영상&#x27;은 무엇인가? (이에 맞춰 템플릿에 집중 작성 가이드를 기재할 예정)</li>
+</ul>
+    </article>
+  </main>
+</body>
+</html>

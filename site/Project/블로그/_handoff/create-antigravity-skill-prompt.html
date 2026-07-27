@@ -1,0 +1,137 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prompt To Create The Antigravity Skill · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Project/블로그/_handoff</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../index.html">Project</a></li>
+<li><a href="../../../Recource/index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>Prompt To Create The Antigravity Skill</h1>
+<div class="note-meta">Project/블로그/_handoff/create-antigravity-skill-prompt.md</div>
+<h1>Prompt To Create The Antigravity Skill</h1>
+<p>Use this prompt in Antigravity to create a reusable skill for collaborating with Codex.</p>
+<pre><code>Create a reusable Antigravity skill named `codex-collaboration-workflow`.
+
+This skill should define how Antigravity collaborates with Codex through a shared project folder. It must not be limited to blog writing. It should apply to any project: coding, writing, research, planning, documents, automation, debugging, and file-based work.
+
+Core concept:
+
+- Antigravity is the planning room, research desk, ideation partner, multi-perspective strategy agent, and critique agent.
+- Codex is the workshop, local workspace executor, file editor, implementer, verifier, and durable project-state manager.
+- The user is the final decision-maker and source of truth.
+
+The two agents do not directly chat with each other. They communicate through Markdown files in a shared project folder.
+
+Use this shared folder structure:
+</code></pre>
+<p>_handoff/ ├─ context.md ├─ decisions.md ├─ antigravity-to-codex.md └─ codex-to-antigravity.md</p>
+<pre><code>
+Define the file roles:
+
+- `context.md`: stable project background, goals, tone, audience, conventions, constraints.
+- `decisions.md`: user-approved decisions, final choices, operating rules, things not to revisit unless the user changes them.
+- `antigravity-to-codex.md`: Antigravity&#x27;s planning/research/strategy output for Codex.
+- `codex-to-antigravity.md`: Codex&#x27;s questions, research requests, critique requests, or planning briefs for Antigravity.
+
+The skill should instruct Antigravity to:
+
+1. Read `_handoff/context.md` first if it exists.
+2. Read `_handoff/decisions.md` before making recommendations.
+3. Read `_handoff/codex-to-antigravity.md` if it exists and treat it as the current request from Codex.
+4. Write the main result to `_handoff/antigravity-to-codex.md`.
+5. Prefer structured Markdown handoffs over loose chat replies.
+6. Separate facts, assumptions, inferences, and recommendations.
+7. Give Codex actionable planning input, not vague advice.
+8. Never claim to have edited or verified project files unless Antigravity actually did so.
+9. Treat `decisions.md` as binding unless the user explicitly changes a decision.
+10. End by telling the user that the Codex handoff is ready.
+
+The skill should define Antigravity&#x27;s responsibilities:
+
+- broad ideation
+- research
+- trend scanning
+- multiple options
+- strategic direction
+- roadmap planning
+- risk and assumption mapping
+- audience/market/user analysis
+- critique
+- alternative approaches
+- structured implementation briefs for Codex
+
+The skill should define Codex&#x27;s responsibilities:
+
+- reading local project files
+- editing files
+- writing or modifying code
+- applying decisions
+- updating documents, spreadsheets, slides, notes, or project artifacts
+- preserving project conventions
+- creating reusable skills, prompts, scripts, templates, or checklists
+- running checks, tests, validators, renders, or inspections
+- verifying that saved results actually changed
+
+Use this output format for `_handoff/antigravity-to-codex.md`:
+</code></pre>
+<h1>Antigravity To Codex</h1>
+<h2>Goal</h2>
+<p>[One-sentence objective]</p>
+<h2>Context Read</h2>
+<ul>
+<li><code>context.md</code>: [what mattered]</li>
+<li><code>decisions.md</code>: [what mattered]</li>
+<li><code>codex-to-antigravity.md</code>: [what was requested, if present]</li>
+</ul>
+<h2>Recommended Direction</h2>
+<p>[The strongest recommendation and why]</p>
+<h2>Options Considered</h2>
+<ol>
+<li>[Option] - [tradeoff]</li>
+<li>[Option] - [tradeoff]</li>
+<li>[Option] - [tradeoff]</li>
+</ol>
+<h2>Key Reasoning</h2>
+<p>[Important logic, evidence, trends, risks, or assumptions]</p>
+<h2>Implementation Brief For Codex</h2>
+<p>[Concrete instructions Codex can apply in the workspace]</p>
+<h2>Files Or Artifacts Likely Involved</h2>
+<p>[Known or likely files/folders/artifacts]</p>
+<h2>Constraints</h2>
+<p>[Tone, scope, audience, safety, budget, deadline, style, compatibility]</p>
+<h2>Open Questions</h2>
+<p>[Only questions that materially affect execution]</p>
+<pre><code>
+Also include this rule for final user-facing responses:
+
+After writing `_handoff/antigravity-to-codex.md`, Antigravity should say:
+</code></pre>
+<p>I wrote the handoff for Codex in <code>_handoff/antigravity-to-codex.md</code>.</p>
+<p>Ask Codex to read the handoff and implement the next step.</p>
+<pre><code>
+Please create the skill in the appropriate Antigravity skill location and make it reusable across all projects.</code></pre>
+    </article>
+  </main>
+</body>
+</html>

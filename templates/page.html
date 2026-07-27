@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}} · Obsidian Archive</title>
+  <link rel="stylesheet" href="{{asset_prefix}}assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{asset_prefix}}index.html">Obsidian Archive</a>
+    <nav>
+      <a href="{{asset_prefix}}Area/index.html">Area</a>
+      <a href="{{asset_prefix}}Project/index.html">Project</a>
+      <a href="{{asset_prefix}}Recource/index.html">Recource</a>
+      <a href="{{asset_prefix}}Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">{{breadcrumb}}</div>
+      <div class="sidebar-title">폴더</div>
+      {{folder_nav}}
+    </aside>
+    <article class="content">
+      {{content}}
+    </article>
+  </main>
+</body>
+</html>

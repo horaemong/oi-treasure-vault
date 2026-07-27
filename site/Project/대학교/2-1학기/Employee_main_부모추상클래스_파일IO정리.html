@@ -1,0 +1,483 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee.java 핵심 압축 정리 · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Project/대학교/2-1학기</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../index.html">Project</a></li>
+<li><a href="../../../Recource/index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>Employee.java 핵심 압축 정리</h1>
+<div class="note-meta">Project/대학교/2-1학기/Employee_main_부모추상클래스_파일IO정리.md</div>
+<p>﻿연결: <span class="missing-link">대학교</span> <span class="missing-link">Employee_main_부모추상클래스_파일IO정리.md</span></p>
+<h1>Employee.java 핵심 압축 정리</h1>
+<p>이 정리는 <code>Employee.java</code>에서 시험에 그대로 나올 가능성이 높은 부분 중, <code>부모 추상 클래스</code>와 <code>main</code>의 파일 읽기/쓰기 부분만 남긴 것이다.</p>
+<p>자식 클래스 작성은 제외하고, 시험장에서 코드 흐름을 잃지 않기 위한 순서 중심으로 정리한다.</p>
+<h2>1. import</h2>
+<p>파일 읽기/쓰기와 리스트/정렬을 위해 필요하다.</p>
+<pre><code>import java.io.*;
+import java.util.*;</code></pre>
+<p><code>java.io.*</code>는 파일 입출력용이다.</p>
+<pre><code>BufferedReader
+FileReader
+PrintWriter
+FileWriter
+FileNotFoundException
+IOException</code></pre>
+<p><code>java.util.*</code>은 리스트와 정렬용이다.</p>
+<pre><code>List
+ArrayList
+Collections
+Comparable</code></pre>
+<h2>2. 부모 추상 클래스</h2>
+<p>부모 추상 클래스는 공통 필드, 공통 생성자, 자식이 반드시 구현해야 하는 메서드, 정렬 기준을 가진다.</p>
+<pre><code>abstract class BaseEmployee implements Comparable&lt;BaseEmployee&gt; {
+    protected String name;
+    protected String typeCode;
+
+    public BaseEmployee(String name, String typeCode) {
+        this.name = name;
+        this.typeCode = typeCode;
+    }
+
+    public abstract double getYearlySalary();
+    public abstract String getEmployeeType();
+    public abstract String toCsvRow();
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int compareTo(BaseEmployee other) {
+        return Double.compare(other.getYearlySalary(), this.getYearlySalary());
+    }
+}</code></pre>
+<p>부모 추상 클래스에서 중요한 부분은 네 개다.</p>
+<pre><code>abstract class BaseEmployee</code></pre>
+<p>직접 객체를 만들 수 없는 부모 클래스라는 뜻이다.</p>
+<pre><code>implements Comparable&lt;BaseEmployee&gt;</code></pre>
+<p><code>Collections.sort(employees);</code>로 정렬할 수 있게 한다.</p>
+<pre><code>public abstract double getYearlySalary();
+public abstract String toCsvRow();</code></pre>
+<p>자식 클래스가 반드시 구현해야 하는 메서드다.</p>
+<pre><code>return Double.compare(other.getYearlySalary(), this.getYearlySalary());</code></pre>
+<p>연봉이 높은 순서대로 정렬한다. 즉 내림차순이다.</p>
+<h2>3. main 전체 흐름</h2>
+<p><code>main</code>은 아래 순서로 작동한다.</p>
+<pre><code>1. 실행할 때 입력 파일명이 들어왔는지 확인
+2. 입력 파일명 저장
+3. 부모 타입 리스트 생성
+4. 파일 읽기 시작
+5. 헤더 한 줄 버리기
+6. CSV를 한 줄씩 읽기
+7. 빈 줄 또는 잘못된 줄 건너뛰기
+8. 쉼표 기준으로 데이터 나누기
+9. type을 보고 자식 객체 생성
+10. 리스트에 객체 저장
+11. 리스트 정렬
+12. 결과 파일 쓰기</code></pre>
+<h2>4. main 기본 틀</h2>
+<p>시험장에서 먼저 이 틀을 만든다.</p>
+<pre><code>public class Employee {
+    public static void main(String[] args) {
+
+    }
+}</code></pre>
+<p>파일명이 바뀌면 public class 이름도 반드시 바뀐다.</p>
+<pre><code>public class Student {
+    public static void main(String[] args) {
+
+    }
+}</code></pre>
+<h2>5. 명령줄 인자 확인</h2>
+<p>프로그램을 실행할 때 CSV 파일 이름을 받는 부분이다.</p>
+<pre><code>if (args.length != 1) {
+    System.out.println(&quot;USAGE: &lt;employees.csv&gt; should be provided as a command line argument.&quot;);
+    return;
+}
+
+String inputFileName = args[0];</code></pre>
+<p>실행 예시:</p>
+<pre><code>java Employee employees.csv</code></pre>
+<p>이때 <code>args[0]</code>에는 <code>&quot;employees.csv&quot;</code>가 들어간다.</p>
+<pre><code>String inputFileName = args[0];</code></pre>
+<p>만약 파일 이름 없이 실행하면 <code>args.length</code>가 <code>0</code>이므로 종료한다.</p>
+<pre><code>if (args.length != 1) {
+    return;
+}</code></pre>
+<h2>6. 리스트 생성</h2>
+<p>파일에서 읽은 객체들을 저장할 리스트를 만든다.</p>
+<pre><code>List&lt;BaseEmployee&gt; employees = new ArrayList&lt;&gt;();</code></pre>
+<p>중요한 점은 자식 타입이 아니라 부모 타입으로 리스트를 만든다는 것이다.</p>
+<pre><code>employees.add(new FullTimeEmployee(name, monthlySalary));
+employees.add(new HourlyEmployee(name, hours, rate));</code></pre>
+<p>서로 다른 자식 객체를 같은 리스트에 넣을 수 있다.</p>
+<h2>7. 파일 읽기 기본 구조</h2>
+<p>파일 읽기는 이 구조를 거의 그대로 외우면 된다.</p>
+<pre><code>try (BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
+    String line;
+
+    while ((line = br.readLine()) != null) {
+        System.out.println(line);
+    }
+} catch (FileNotFoundException e) {
+    System.out.println(inputFileName + &quot; (The system cannot find the file specified)&quot;);
+    return;
+} catch (IOException e) {
+    return;
+}</code></pre>
+<p>핵심은 이 부분이다.</p>
+<pre><code>BufferedReader br = new BufferedReader(new FileReader(inputFileName))</code></pre>
+<p><code>inputFileName</code>이라는 파일을 읽을 준비를 한다.</p>
+<pre><code>while ((line = br.readLine()) != null)</code></pre>
+<p>파일을 한 줄씩 읽는다. 더 이상 읽을 줄이 없으면 <code>null</code>이 되어 반복문이 끝난다.</p>
+<h2>8. 헤더 건너뛰기</h2>
+<p>CSV 첫 줄은 보통 제목 줄이다.</p>
+<pre><code>Type,Name,NumberOfHours,HourlyRate,MonthlySalary
+F,Kim,,,3000
+H,Lee,120,10,</code></pre>
+<p>첫 줄을 버리려면 <code>while</code> 전에 한 번 읽는다.</p>
+<pre><code>br.readLine();</code></pre>
+<p>파일 읽기 구조 안에서는 이렇게 들어간다.</p>
+<pre><code>try (BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
+    String line;
+    br.readLine();
+
+    while ((line = br.readLine()) != null) {
+
+    }
+}</code></pre>
+<h2>9. 빈 줄 건너뛰기</h2>
+<p>CSV 중간에 빈 줄이 있으면 처리하지 않고 넘어간다.</p>
+<pre><code>if (line.trim().isEmpty()) continue;</code></pre>
+<p><code>trim()</code>은 앞뒤 공백을 제거한다.</p>
+<pre><code>&quot;   &quot;.trim().isEmpty()</code></pre>
+<p>위 코드는 <code>true</code>가 된다.</p>
+<h2>10. CSV 나누기</h2>
+<p>한 줄을 쉼표 기준으로 나눈다.</p>
+<pre><code>String[] data = line.split(&quot;,&quot;, -1);</code></pre>
+<p><code>Employee.java</code>에서는 CSV가 이렇게 생겼다.</p>
+<pre><code>Type,Name,NumberOfHours,HourlyRate,MonthlySalary
+F,Kim,,,3000
+H,Lee,120,10,</code></pre>
+<p>인덱스는 이렇게 대응된다.</p>
+<pre><code>data[0] = Type
+data[1] = Name
+data[2] = NumberOfHours
+data[3] = HourlyRate
+data[4] = MonthlySalary</code></pre>
+<p><code>-1</code>을 넣는 이유는 마지막 빈 칸도 살리기 위해서다.</p>
+<pre><code>String[] data = line.split(&quot;,&quot;, -1);</code></pre>
+<p>예를 들어 아래 줄에서 마지막 칸은 비어 있다.</p>
+<pre><code>H,Lee,120,10,</code></pre>
+<p><code>split(&quot;,&quot;, -1)</code>을 쓰면 마지막 빈 칸까지 배열에 남는다.</p>
+<h2>11. 잘못된 줄 건너뛰기</h2>
+<p>필요한 칸 수보다 적으면 처리하지 않는다.</p>
+<pre><code>if (data.length &lt; 5) continue;</code></pre>
+<p><code>Employee.java</code>는 총 5칸이 필요하므로 <code>5</code>를 기준으로 검사한다.</p>
+<p>문제에서 CSV 칸이 4개라면 이렇게 바꾼다.</p>
+<pre><code>if (data.length &lt; 4) continue;</code></pre>
+<h2>12. type과 name 꺼내기</h2>
+<p>CSV에서 타입과 이름을 꺼낸다.</p>
+<pre><code>String type = data[0].trim();
+String name = data[1].trim();</code></pre>
+<p><code>type</code>은 어떤 자식 객체를 만들지 결정하는 값이다.</p>
+<pre><code>if (type.equals(&quot;F&quot;)) {
+
+} else if (type.equals(&quot;H&quot;)) {
+
+}</code></pre>
+<h2>13. 숫자 변환</h2>
+<p>CSV에서 읽은 값은 전부 문자열이다.</p>
+<pre><code>String s = data[4].trim();</code></pre>
+<p>계산하려면 <code>double</code>로 바꿔야 한다.</p>
+<pre><code>double monthlySalary = Double.parseDouble(data[4].trim());</code></pre>
+<p>빈 칸이면 <code>0</code>으로 처리하는 방식:</p>
+<pre><code>double monthlySalary = data[4].trim().isEmpty()
+        ? 0
+        : Double.parseDouble(data[4].trim());</code></pre>
+<p>이 코드는 아래 뜻이다.</p>
+<pre><code>data[4]가 비어 있으면 0
+비어 있지 않으면 double로 변환</code></pre>
+<h2>14. type에 따라 객체 생성</h2>
+<p>파일 읽기에서 가장 중요한 부분이다.</p>
+<pre><code>try {
+    if (type.equals(&quot;F&quot;)) {
+        double monthlySalary = data[4].trim().isEmpty()
+                ? 0
+                : Double.parseDouble(data[4].trim());
+
+        employees.add(new FullTimeEmployee(name, monthlySalary));
+    } else if (type.equals(&quot;H&quot;)) {
+        double hours = data[2].trim().isEmpty()
+                ? 0
+                : Double.parseDouble(data[2].trim());
+
+        double rate = data[3].trim().isEmpty()
+                ? 0
+                : Double.parseDouble(data[3].trim());
+
+        employees.add(new HourlyEmployee(name, hours, rate));
+    }
+} catch (NumberFormatException e) {
+    // 데이터 형식 오류 시 해당 행 건너뜀
+}</code></pre>
+<p>구조만 보면 이렇다.</p>
+<pre><code>if (type.equals(&quot;F&quot;)) {
+    // F 타입에 필요한 값 읽기
+    // FullTimeEmployee 객체 생성
+    // employees 리스트에 추가
+} else if (type.equals(&quot;H&quot;)) {
+    // H 타입에 필요한 값 읽기
+    // HourlyEmployee 객체 생성
+    // employees 리스트에 추가
+}</code></pre>
+<p>시험에서 이름이 바뀌면 이 구조만 유지한다.</p>
+<pre><code>if (type.equals(&quot;A&quot;)) {
+    double value = Double.parseDouble(data[2].trim());
+    list.add(new TypeA(name, value));
+} else if (type.equals(&quot;B&quot;)) {
+    double x = Double.parseDouble(data[2].trim());
+    double y = Double.parseDouble(data[3].trim());
+    list.add(new TypeB(name, x, y));
+}</code></pre>
+<h2>15. 파일 읽기 전체</h2>
+<p>시험에서 파일 읽기 부분은 아래 블록을 기준으로 외운다.</p>
+<pre><code>try (BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
+    String line;
+    br.readLine();
+
+    while ((line = br.readLine()) != null) {
+        if (line.trim().isEmpty()) continue;
+
+        String[] data = line.split(&quot;,&quot;, -1);
+        if (data.length &lt; 5) continue;
+
+        String type = data[0].trim();
+        String name = data[1].trim();
+
+        try {
+            if (type.equals(&quot;F&quot;)) {
+                double monthlySalary = data[4].trim().isEmpty()
+                        ? 0
+                        : Double.parseDouble(data[4].trim());
+
+                employees.add(new FullTimeEmployee(name, monthlySalary));
+            } else if (type.equals(&quot;H&quot;)) {
+                double hours = data[2].trim().isEmpty()
+                        ? 0
+                        : Double.parseDouble(data[2].trim());
+
+                double rate = data[3].trim().isEmpty()
+                        ? 0
+                        : Double.parseDouble(data[3].trim());
+
+                employees.add(new HourlyEmployee(name, hours, rate));
+            }
+        } catch (NumberFormatException e) {
+            // 데이터 형식 오류 시 해당 행 건너뜀
+        }
+    }
+} catch (FileNotFoundException e) {
+    System.out.println(inputFileName + &quot; (The system cannot find the file specified)&quot;);
+    return;
+} catch (IOException e) {
+    return;
+}</code></pre>
+<h2>16. 정렬</h2>
+<p>파일을 다 읽고 리스트에 객체를 모두 넣은 뒤 정렬한다.</p>
+<pre><code>Collections.sort(employees);</code></pre>
+<p>정렬 기준은 부모 추상 클래스의 <code>compareTo</code>에 있다.</p>
+<pre><code>@Override
+public int compareTo(BaseEmployee other) {
+    return Double.compare(other.getYearlySalary(), this.getYearlySalary());
+}</code></pre>
+<h2>17. 파일 쓰기 기본 구조</h2>
+<p>파일 쓰기는 이 구조를 외우면 된다.</p>
+<pre><code>try (PrintWriter pw = new PrintWriter(new FileWriter(&quot;output.csv&quot;))) {
+    pw.println(&quot;Header1,Header2,Header3&quot;);
+
+    for (BaseEmployee emp : employees) {
+        pw.println(emp.toCsvRow());
+    }
+} catch (IOException e) {
+}</code></pre>
+<p>핵심은 이 부분이다.</p>
+<pre><code>PrintWriter pw = new PrintWriter(new FileWriter(&quot;output.csv&quot;))</code></pre>
+<p><code>output.csv</code>라는 파일을 쓰기 위해 연다.</p>
+<pre><code>pw.println(&quot;Header1,Header2,Header3&quot;);</code></pre>
+<p>첫 줄에 헤더를 쓴다.</p>
+<pre><code>for (BaseEmployee emp : employees) {
+    pw.println(emp.toCsvRow());
+}</code></pre>
+<p>리스트에 있는 객체들을 한 줄씩 CSV 형태로 출력한다.</p>
+<h2>18. Employee.java의 파일 쓰기</h2>
+<p><code>Employee.java</code>에서는 결과 파일 이름이 <code>sorted_employees.csv</code>다.</p>
+<pre><code>try (PrintWriter pw = new PrintWriter(new FileWriter(&quot;sorted_employees.csv&quot;))) {
+    pw.println(&quot;Type,Name,NumberOfHours,HourlyRate,MonthlySalary&quot;);
+
+    for (BaseEmployee emp : employees) {
+        pw.println(emp.toCsvRow());
+    }
+} catch (IOException e) {
+}</code></pre>
+<p>시험에서 바뀌는 부분:</p>
+<pre><code>new FileWriter(&quot;sorted_employees.csv&quot;)</code></pre>
+<p>출력 파일 이름이다.</p>
+<pre><code>pw.println(&quot;Type,Name,NumberOfHours,HourlyRate,MonthlySalary&quot;);</code></pre>
+<p>CSV 헤더다.</p>
+<pre><code>emp.toCsvRow()</code></pre>
+<p>각 객체가 자기 자신을 CSV 한 줄로 바꾸는 메서드다.</p>
+<h2>19. main 완성본</h2>
+<p>자식 클래스는 이미 작성되어 있다고 보고, <code>main</code>만 보면 아래와 같다.</p>
+<pre><code>public class Employee {
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.out.println(&quot;USAGE: &lt;employees.csv&gt; should be provided as a command line argument.&quot;);
+            return;
+        }
+
+        String inputFileName = args[0];
+        List&lt;BaseEmployee&gt; employees = new ArrayList&lt;&gt;();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
+            String line;
+            br.readLine();
+
+            while ((line = br.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+
+                String[] data = line.split(&quot;,&quot;, -1);
+                if (data.length &lt; 5) continue;
+
+                String type = data[0].trim();
+                String name = data[1].trim();
+
+                try {
+                    if (type.equals(&quot;F&quot;)) {
+                        double monthlySalary = data[4].trim().isEmpty()
+                                ? 0
+                                : Double.parseDouble(data[4].trim());
+                        employees.add(new FullTimeEmployee(name, monthlySalary));
+                    } else if (type.equals(&quot;H&quot;)) {
+                        double hours = data[2].trim().isEmpty()
+                                ? 0
+                                : Double.parseDouble(data[2].trim());
+                        double rate = data[3].trim().isEmpty()
+                                ? 0
+                                : Double.parseDouble(data[3].trim());
+                        employees.add(new HourlyEmployee(name, hours, rate));
+                    }
+                } catch (NumberFormatException e) {
+                    // 데이터 형식 오류 시 해당 행 건너뜀
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(inputFileName + &quot; (The system cannot find the file specified)&quot;);
+            return;
+        } catch (IOException e) {
+            return;
+        }
+
+        Collections.sort(employees);
+
+        try (PrintWriter pw = new PrintWriter(new FileWriter(&quot;sorted_employees.csv&quot;))) {
+            pw.println(&quot;Type,Name,NumberOfHours,HourlyRate,MonthlySalary&quot;);
+
+            for (BaseEmployee emp : employees) {
+                pw.println(emp.toCsvRow());
+            }
+        } catch (IOException e) {
+        }
+    }
+}</code></pre>
+<h2>20. 시험장에서 main 작성 순서</h2>
+<p>아래 순서대로 쓰면 된다.</p>
+<pre><code>1. public class 만들기
+2. public static void main(String[] args) 만들기
+3. args.length 확인
+4. inputFileName = args[0]
+5. List&lt;BaseEmployee&gt; employees = new ArrayList&lt;&gt;()
+6. try-with-resources로 BufferedReader 열기
+7. br.readLine()으로 헤더 제거
+8. while로 한 줄씩 읽기
+9. line.trim().isEmpty() 검사
+10. line.split(&quot;,&quot;, -1)
+11. data.length 검사
+12. type, name 꺼내기
+13. type.equals(...)로 분기
+14. Double.parseDouble(...)로 숫자 변환
+15. new 자식클래스(...) 해서 리스트에 add
+16. NumberFormatException 처리
+17. FileNotFoundException, IOException 처리
+18. Collections.sort(employees)
+19. PrintWriter로 출력 파일 열기
+20. 헤더 출력
+21. for-each로 toCsvRow() 출력</code></pre>
+<h2>21. 진짜 암기해야 할 압축 형태</h2>
+<p>시험 직전에 이것만 반복해서 보면 된다.</p>
+<pre><code>String inputFileName = args[0];
+List&lt;BaseEmployee&gt; employees = new ArrayList&lt;&gt;();
+
+try (BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
+    String line;
+    br.readLine();
+
+    while ((line = br.readLine()) != null) {
+        if (line.trim().isEmpty()) continue;
+
+        String[] data = line.split(&quot;,&quot;, -1);
+        if (data.length &lt; 5) continue;
+
+        String type = data[0].trim();
+        String name = data[1].trim();
+
+        if (type.equals(&quot;F&quot;)) {
+            double monthlySalary = Double.parseDouble(data[4].trim());
+            employees.add(new FullTimeEmployee(name, monthlySalary));
+        } else if (type.equals(&quot;H&quot;)) {
+            double hours = Double.parseDouble(data[2].trim());
+            double rate = Double.parseDouble(data[3].trim());
+            employees.add(new HourlyEmployee(name, hours, rate));
+        }
+    }
+} catch (IOException e) {
+}
+
+Collections.sort(employees);
+
+try (PrintWriter pw = new PrintWriter(new FileWriter(&quot;sorted_employees.csv&quot;))) {
+    pw.println(&quot;Type,Name,NumberOfHours,HourlyRate,MonthlySalary&quot;);
+
+    for (BaseEmployee emp : employees) {
+        pw.println(emp.toCsvRow());
+    }
+} catch (IOException e) {
+}</code></pre>
+<h2>22. 한 줄 요약</h2>
+<pre><code>main은 CSV 파일을 읽어서 type에 맞는 객체를 만들고, 리스트에 넣고, 정렬한 뒤, 다시 CSV 파일로 쓰는 코드다.</code></pre>
+    </article>
+  </main>
+</body>
+</html>

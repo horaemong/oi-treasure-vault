@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>상태를 변경하기 · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../../Area/index.html">Area</a>
+      <a href="../../../Project/index.html">Project</a>
+      <a href="../../../Recource/index.html">Recource</a>
+      <a href="../../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Recource/web/react</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../../Area/index.html">Area</a></li>
+<li><a href="../../../Project/index.html">Project</a></li>
+<li><a href="../../index.html">Recource</a></li>
+<li><a href="../../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>상태를 변경하기</h1>
+<div class="note-meta">Recource/web/react/8. 상태.md</div>
+<p>﻿--- date: 2025-05-25 tags:</p>
+<ul>
+<li>리액트</li>
+<li>react</li>
+<li>상태</li>
+<p>---</p>
+</ul>
+<p>연결: <span class="missing-link">web</span> <span class="missing-link">React</span></p>
+<h1>상태를 변경하기</h1>
+<p>훅 함수 useState함수는 두 개의 값이 들어간 배열로 이루어져있다. 첫 번째 값은 바뀐 값을 담고 있고, 두 번째 값은 변경할 값을 담는다. 두 번째 값이 바뀌면 해당 함수만 재실행하고, dom에서 바뀐 부분만 새로 가져온다. <span class="note-meta">이미지/첨부: 2025-05-25 22 34 53.png</span><span class="note-meta">이미지/첨부: 2025-05-25 22 48 41.png</span></p>
+<h1>상태 올리기</h1>
+<p>필요한 곳(상위 컴포넌트)에서 값의 변화가 있는 곳(하위 컴포넌트)으로 전달.</p>
+<p>하위 컴포넌트에서 상태변화가 일어나고, 상위 컴포넌트의 dom이 바껴야 할 경우 이 와 같이 하면 된다.</p>
+<p><span class="note-meta">이미지/첨부: 2025-05-25 22 51 34.png</span></p>
+    </article>
+  </main>
+</body>
+</html>

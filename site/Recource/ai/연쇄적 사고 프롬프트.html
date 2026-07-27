@@ -1,0 +1,104 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>연쇄적 사고 프롬프트 · Obsidian Archive</title>
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../index.html">Obsidian Archive</a>
+    <nav>
+      <a href="../../Area/index.html">Area</a>
+      <a href="../../Project/index.html">Project</a>
+      <a href="../../Recource/index.html">Recource</a>
+      <a href="../../Archive/index.html">Archive</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">현재 위치</div>
+      <div class="breadcrumb">Recource/ai</div>
+      <div class="sidebar-title">폴더</div>
+      <ul class="folder-list"><li><a href="../../Area/index.html">Area</a></li>
+<li><a href="../../Project/index.html">Project</a></li>
+<li><a href="../index.html">Recource</a></li>
+<li><a href="../../Archive/index.html">Archive</a></li></ul>
+    </aside>
+    <article class="content">
+      <h1>연쇄적 사고 프롬프트</h1>
+<div class="note-meta">Recource/ai/연쇄적 사고 프롬프트.md</div>
+<p>﻿연결: <span class="missing-link">AI</span> <span class="missing-link">연쇄적 사고 프롬프트.md</span></p>
+<h2>**연쇄적 사고 프롬프트**</h2>
+<p>연쇄**프롬프트는** 입력부터 최종 출력까지 단계별로 추론 과정을 설명하도록 LLM에 요청하는 프롬프트 기법입니다. 이 기술은 기본적으로 AI에게 &quot;자신의 작업을 보여달라&quot;고 요청하여 응답을 보다 투명하고 체계적으로 만듭니다.</p>
+<p>연쇄 사고 프롬프트를 사용하려면 프롬프트에 다음과 같은 핵심 문구를 포함하기만 하면 됩니다:</p>
+<ul>
+<li>&quot;당신의 추론을 설명하세요&quot;</li>
+</ul>
+<ul>
+<li>&quot;단계별로 진행하세요&quot;</li>
+</ul>
+<p>이러한 추가 사항은 AI가 자신의 사고 과정을 추적해야 한다는 것을 나타내며, 이는 종종 더 유익하고 정확한 결과물로 이어집니다.</p>
+<p>이 기술이 유용한 경우를 예로 들어 보겠습니다:</p>
+<p>특정 부서를 위한 온보딩 자료를 개발하는 HR 관리자를 예로 들어 보겠습니다. 다음은 작업을 처리하기 위해 실행 가능한 단계를 식별하는 데 연쇄적 사고 프롬프트를 사용하는 방법입니다:</p>
+<p>**프롬프트**:</p>
+<p>_광고 대행사에 새로 입사한 신입 디자인 직원의 주요 업무와 책임이 요약된 글머리 기호 목록을 작성하세요. 단계별로 이유를 설명하세요._</p>
+<p>&quot;추론을 단계별로 설명하세요&quot;라는 추가 지침이 눈에 띄나요? 이 문구를 포함하거나 포함하지 않은 상태에서 이 프롬프트를 사용하여 AI의 응답 차이를 확인할 수 있습니다.</p>
+<p>AI가 제안하는 업무의 논리와 추론을 세분화하여 설명하도록 요청하면, 결과물에서 얻을 수 있는 정보에 _왜_ 그런 제안이 나왔는지에 대한 근거도 함께 제공됩니다. 이 경우 HR 관리자가 잠재적인 격차를 파악하고 현재 온보딩 프로세스를 개선하는 방법에 대해 정보에 입각한 결정을 내리는 데 도움이 될 수 있습니다.</p>
+<p><img alt="" src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/_063bf03b01b54768ad8de683d808e0cb_JSUW1A3SS_eB208x8lyTpA_6a59a66275a443c8af013780386808f1_AD_4nXep3pQJqTP0AKUXZZfqSIsHLB1H8SIDRDeF6qdZqo0HhHi73v0RPj9EAZWW7m5ktLAoIwb6SkBp-BKptcMWU0_nUEkWPRRYrEcm4B0wudejvgCNP8xMgZsL8BzH_b_vlBKKcxjKsOUh5mVoHwyDry2tiVj6?expiry=1767271650565&amp;hmac=94oRjOV_-hdnB_72drNKVVFzl2FoNOXu18N-KnVApys" /></p>
+<h2>**프롬프트 연쇄**</h2>
+<p>연쇄 프롬프트가 단일 프롬프트 _내의_ 추론에 초점을 맞추는 반면, **프롬프트** 연쇄는 동일한 채팅에 있는 일련의 작은 연결 단계로 나누어서 대규모 프로젝트를 처리하는 데 도움이 됩니다. 공장 조립 라인처럼 한 프롬프트의 출력이 다음 프롬프트의 입력으로 사용되어 모든 작업을 체인처럼 서로 연결합니다.</p>
+<p><img alt="" src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/_f0e7e35bfb704b0293357acccbd532d0_AI-essentials-chain-of-thought-graphic.png?expiry=1767271650565&amp;hmac=ZRG5N8TdpzT96-X5hcMia_6XvnJBM7rJjiKCDO_B4fg" /></p>
+<p>이 기법에는 세 가지 주요 단계가 포함됩니다:</p>
+<ol>
+<li>**작업 분석**: 복잡한 작업을 일련의 작고 논리적인 단계로 세분화하는 것부터 시작하세요.</li>
+</ol>
+<ol>
+<li>**초기 프롬프트**: AI에게 첫 번째 단계만 완료하도록 요청하는 집중적인 프롬프트를 작성하세요.</li>
+</ol>
+<ol>
+<li>**입력/출력 흐름**: 첫 번째 프롬프트의 출력을 두 번째 프롬프트의 컨텍스트로 사용합니다. 작업을 완료할 때까지 이 반복적인 흐름을 계속하세요.</li>
+</ol>
+<p>프롬프트 체인의 예를 살펴보겠습니다:</p>
+<p>파리로 짧은 휴가를 계획하고 있다고 가정해 보겠습니다. 휴가에서 가장 좋아하는 것들로 여정을 구성하는 동시에 시간을 최대한 효율적으로 사용할 수 있도록 물류를 극대화하고 싶을 것입니다:</p>
+<p>**프롬프트 1**: _3일 동안 [도시 이름]에 갈 예정입니다. 저는 예술, 유적지, 공원을 좋아합니다. 여행 중에 방문할 수 있는 유명한 장소 몇 군데를 추천해 주세요._</p>
+<p>**프롬프트 2(프롬프트 1에서 연결)**: _이러한 위치를 사용하여 이동 시간을 최소화하는 논리적인 일일 여행 일정을 만드세요._</p>
+<p>**프롬프트 3(프롬프트 2에서 연결)**: _여정의 각 날마다 제안된 각 위치 근처에 있는 레스토랑 몇 곳을 제안하세요._</p>
+<p>작업을 논리적이고 소화 가능한 단계로 나누고 한 프롬프트의 출력을 다음 프롬프트의 특정 입력으로 사용함으로써 AI를 단순한 답변 생성기에서 구조화된 공동 작업자로 전환할 수 있습니다.</p>
+<p><img alt="" src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/_30c5193b27b4444b969f63ca01a59245__063bf03b01b54768ad8de683d808e0cb_JSUW1A3SS_eB208x8lyTpA_6a59a66275a443c8af013780386808f1_AD_4nXep3pQJqTP0AKUXZZfqSIsHLB1H8SIDRDeF6qdZqo0HhHi73v0RPj9EAZWW7m5ktLAoIwb6SkBp-BKptcMWU0_nUEkWPRRYrEcm4B0wudejvgCNP8xMgZsL8BzH_b_vlBKKcxjKsOUh5mVoHwyDry2tiVj6?expiry=1767271650565&amp;hmac=C2G9deSpM2f_NWT6jFHzLW3B52g7IKSg4Tlzh_7RAEA" /></p>
+<h2>**프롬프트 연쇄와 사고의 사슬 결합하기**</h2>
+<p>프롬프트 연쇄와 사고 연쇄 프롬프트를 결합하여 _어느 단계에서_ 든 문제 해결 프로세스의 품질과 정확성을 향상시킬 수 있습니다.</p>
+<p>생각의 사슬 프롬프트와 프롬프트 체인을 결합한 예를 살펴보겠습니다:</p>
+<p>다음 북클럽 모임을 주최하면서 추천할 책에 대한 제안을 받고 싶다고 가정해 보겠습니다. 판타지 소설을 추천하고 싶지만 판타지는 북클럽에서 일반적으로 읽는 장르가 아닙니다. 선택하는 판타지 소설은 부담스럽거나 너무 복잡하지 않으면서도 흥미를 끌 수 있어야 합니다.</p>
+<p>**프롬프트 1:** _북클럽을 주최하고 있는데 이 장르를 처음 읽는 사람들을 위한 판타지 도서 추천을 받고 싶습니다. 우리가 사용할 수 있는 몇 권의 책을 제안해 주세요._</p>
+<p>**프롬프트 2(프롬프트 연쇄 및 생각의 연쇄 프롬프트 사용):** _이 목록에서 빠른 속도로 읽을 만한 책을 찾고 있다면 어떤 책을 추천할 수 있을까요?_ _**이유를 설명하세요**__._</p>
+<p>이 반복적인 프로세스는 최종 도서가 선정되고 검토될 때까지 계속됩니다. 신속한 연쇄 연결로 복잡한 작업을 세분화하고 사고의 연쇄를 통합하면 더 어려운 문제를 해결하면서 보다 정확한 결과를 얻을 수 있습니다.</p>
+<p><img alt="" src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/_964e14d82eb6462f82ed562a4ef56e48_JSUW1A3SS_eB208x8lyTpA_6a59a66275a443c8af013780386808f1_AD_4nXep3pQJqTP0AKUXZZfqSIsHLB1H8SIDRDeF6qdZqo0HhHi73v0RPj9EAZWW7m5ktLAoIwb6SkBp-BKptcMWU0_nUEkWPRRYrEcm4B0wudejvgCNP8xMgZsL8BzH_b_vlBKKcxjKsOUh5mVoHwyDry2tiVj6?expiry=1767271650565&amp;hmac=OmxYSrKtsl8575z4_0OijDRVSE_cTUx5yu8EJ5sElbc" /></p>
+<h2>**제한 사항 및 모범 사례**</h2>
+<p>프롬프트 체인은 유용한 기법이 될 수 있지만, 특히 체인이 길어질 경우 발생할 수 있는 잠재적인 문제를 인식하는 것이 중요합니다.</p>
+<p>AI 툴은 프롬프트 체인이 길어질수록 대화의 이전 부분의 문맥을 기억하는 데 어려움을 겪을 수 있습니다. 이는 다음과 같은 결과로 이어질 수 있습니다:</p>
+<ul>
+<li>일관성 없는 응답</li>
+</ul>
+<ul>
+<li>이전 프롬프트에서 중요한 세부 사항을 간과</li>
+</ul>
+<ul>
+<li>작업의 전반적인 목표를 유지하기 어려움</li>
+</ul>
+<p>이러한 문제를 극복하고 효과적인 프롬프트 연쇄를 보장하려면 다음 전략을 고려하세요:</p>
+<ul>
+<li>**체크포인트 사용**: 주기적으로 AI에게 전체 목표에 대한 간략한 요약을 제공하도록 요청하세요.</li>
+</ul>
+<ul>
+<li>**하위 작업으로 작업하세요**: 매우 복잡한 작업을 더 작은 하위 작업으로 나누어 각각의 작업을 더 짧은 체인으로 처리한 후 다음 단계로 넘어갈 수 있도록 하세요.</li>
+</ul>
+<ul>
+<li>**요약 및 리디렉션**: AI 도구가 원래의 목표에서 벗어나는 것을 발견하면 필수 정보를 요약하고 다시 주요 목표로 리디렉션하세요.</li>
+</ul>
+<p>이러한 전략을 사용하면 AI 도구에서 보다 정확하고 관련성 높은 결과를 얻을 수 있습니다. 다른 프롬프트 기술과 마찬가지로 프롬프트 연쇄는 필요한 컨텍스트 제공과 정보 과부하 방지 사이의 적절한 균형을 찾는 데 달려 있습니다.</p>
+    </article>
+  </main>
+</body>
+</html>
