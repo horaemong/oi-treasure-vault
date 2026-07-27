@@ -87,6 +87,8 @@ def collect_notes() -> list[Note]:
         raw = src.read_text(encoding="utf-8", errors="replace")
         meta, body = parse_frontmatter(raw)
         title = meta.get("title") or first_heading(body) or src.stem
+        if rel.as_posix().startswith("Area/100. 일기/") and re.match(r"^\d{4}-\d{2}-\d{2}$", src.stem):
+            title = src.stem
         date = meta.get("date") or ""
         out_rel = rel.with_suffix(".html")
         notes.append(Note(src=src, rel=rel, out_rel=out_rel, title=title, date=date))
@@ -420,6 +422,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 
