@@ -103,6 +103,19 @@ def build_lookup(notes: list[Note]) -> dict[str, Note]:
     return lookup
 
 
+def is_daily_note(note: Note) -> bool:
+    rel = note.rel.as_posix()
+    if not rel.startswith("Area/100. 일기/"):
+        return False
+    if "/docs/" in rel or "/진행사항/" in rel or "/_" in rel:
+        return False
+    return re.match(r"^\d{4}-\d{2}-\d{2}$", note.src.stem) is not None
+
+
+def daily_notes(notes: list[Note]) -> list[Note]:
+    return sorted([n for n in notes if is_daily_note(n)], key=lambda n: n.src.stem, reverse=True)
+
+
 def inline(text: str, current: Note, lookup: dict[str, Note]) -> str:
     text = html.escape(text)
 
@@ -271,6 +284,19 @@ def write_note(note: Note, lookup: dict[str, Note]) -> None:
 
 
 def write_index(out_rel: Path, title: str, notes: list[Note], folders: list[Path], breadcrumb: str) -> None:
+    if out_rel == Path("Area") / "100. 일기" / "index.html":
+        diary_items = []
+        for note in daily_notes(notes):
+            href = rel_url(out_rel, note.out_rel)
+            meta = html.escape(note.rel.as_posix())
+            diary_items.append(f'<li><a href="{href}">{html.escape(note.title)}</a><div class="note-meta">{meta}</div></li>')
+        content = "<h1>100. 일기</h1>\n<p class=\"lede\">날짜별 일기 파일만 모아 최신순으로 정리한 목록입니다.</p>\n<ul class=\"note-list\">\n" + "\n".join(diary_items) + "\n</ul>"
+        html_text = render_page("100. 일기", content, out_rel, breadcrumb)
+        dest = OUT / out_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(html_text, encoding="utf-8")
+        return
+
     if out_rel == Path("index.html"):
         project_href = rel_url(out_rel, Path("Project") / "index.html")
         diary_href = rel_url(out_rel, Path("Area") / "100. 일기" / "index.html")
@@ -282,11 +308,7 @@ def write_index(out_rel: Path, title: str, notes: list[Note], folders: list[Path
             key=lambda n: n.src.stat().st_mtime,
             reverse=True,
         )[:5]
-        diary_notes = sorted(
-            [n for n in notes if len(n.rel.parts) >= 3 and n.rel.parts[0] == "Area" and n.rel.parts[1] == "100. 일기"],
-            key=lambda n: (n.date or n.src.stem),
-            reverse=True,
-        )[:5]
+        diary_notes = daily_notes(notes)[:5]
 
         def home_items(source_notes: list[Note]) -> str:
             rows = []
@@ -363,6 +385,8 @@ def write_indexes(notes: list[Note]) -> None:
             out_rel = Path("index.html")
             title = "Obsidian Archive"
             breadcrumb = "root"
+            write_index(out_rel, title, notes, child_dirs, breadcrumb)
+            continue
         else:
             out_rel = directory / "index.html"
             title = directory.name
@@ -396,6 +420,9 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+
 
 
 
