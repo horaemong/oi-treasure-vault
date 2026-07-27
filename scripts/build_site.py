@@ -303,12 +303,21 @@ def write_index(out_rel: Path, title: str, notes: list[Note], folders: list[Path
         area_href = rel_url(out_rel, Path("Area") / "index.html")
         resource_href = rel_url(out_rel, Path("Recource") / "index.html")
         archive_href = rel_url(out_rel, Path("Archive") / "index.html")
-        project_notes = sorted(
-            [n for n in notes if len(n.rel.parts) >= 2 and n.rel.parts[0] == "Project"],
-            key=lambda n: n.src.stat().st_mtime,
-            reverse=True,
-        )[:5]
+        project_folders = [
+            ("0. 유튜브", "유튜브"),
+            ("1. 시작 상담", "시작상담"),
+            ("블로그", "블로그"),
+            ("대학교", "대학교"),
+        ]
         diary_notes = daily_notes(notes)[:5]
+
+        def home_project_items() -> str:
+            rows = []
+            for folder, label in project_folders:
+                target = Path("Project") / folder / "index.html"
+                href = rel_url(out_rel, target)
+                rows.append(f'<li><a href="{href}">{html.escape(label)}</a><div class="note-meta">Project/{html.escape(folder)}</div></li>')
+            return "\n".join(rows)
 
         def home_items(source_notes: list[Note]) -> str:
             rows = []
@@ -328,7 +337,7 @@ def write_index(out_rel: Path, title: str, notes: list[Note], folders: list[Path
       <a href="{project_href}">전체 보기</a>
     </div>
     <ul class="note-list compact">
-      {home_items(project_notes)}
+      {home_project_items()}
     </ul>
   </section>
   <section class="home-section">
@@ -420,6 +429,9 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+
 
 
 
