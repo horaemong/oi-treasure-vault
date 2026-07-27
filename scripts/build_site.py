@@ -277,20 +277,47 @@ def write_index(out_rel: Path, title: str, notes: list[Note], folders: list[Path
         area_href = rel_url(out_rel, Path("Area") / "index.html")
         resource_href = rel_url(out_rel, Path("Recource") / "index.html")
         archive_href = rel_url(out_rel, Path("Archive") / "index.html")
+        project_notes = sorted(
+            [n for n in notes if len(n.rel.parts) >= 2 and n.rel.parts[0] == "Project"],
+            key=lambda n: n.src.stat().st_mtime,
+            reverse=True,
+        )[:5]
+        diary_notes = sorted(
+            [n for n in notes if len(n.rel.parts) >= 3 and n.rel.parts[0] == "Area" and n.rel.parts[1] == "100. 일기"],
+            key=lambda n: (n.date or n.src.stem),
+            reverse=True,
+        )[:5]
+
+        def home_items(source_notes: list[Note]) -> str:
+            rows = []
+            for note in source_notes:
+                href = rel_url(out_rel, note.out_rel)
+                meta = html.escape(note.rel.as_posix())
+                rows.append(f'<li><a href="{href}">{html.escape(note.title)}</a><div class="note-meta">{meta}</div></li>')
+            return "\n".join(rows)
+
         content = f"""
 <h1>OI의 보물창고</h1>
 <p class="lede">Obsidian에 쌓인 프로젝트, 일기, 공부 기록을 웹에서 훑어볼 수 있게 만든 개인 아카이브입니다.</p>
-<div class="home-grid">
-  <a class="home-card primary" href="{project_href}">
-    <span class="card-label">Project</span>
-    <strong>진행 중인 생각과 산출물</strong>
-    <span>유튜브, 블로그, 매매일지, 개발 프로젝트 기록을 먼저 봅니다.</span>
-  </a>
-  <a class="home-card primary" href="{diary_href}">
-    <span class="card-label">Area / 100. 일기</span>
-    <strong>하루 기록</strong>
-    <span>일별 기록과 주간 기록이 모이는 가장 중요한 생활 로그입니다.</span>
-  </a>
+<div class="home-sections">
+  <section class="home-section">
+    <div class="section-head">
+      <h2>Project</h2>
+      <a href="{project_href}">전체 보기</a>
+    </div>
+    <ul class="note-list compact">
+      {home_items(project_notes)}
+    </ul>
+  </section>
+  <section class="home-section">
+    <div class="section-head">
+      <h2>Area / 100. 일기</h2>
+      <a href="{diary_href}">전체 보기</a>
+    </div>
+    <ul class="note-list compact">
+      {home_items(diary_notes)}
+    </ul>
+  </section>
 </div>
 <h2>다른 공간</h2>
 <ul class="note-list compact">
@@ -369,6 +396,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 

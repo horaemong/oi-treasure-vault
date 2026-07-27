@@ -274,3 +274,33 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.home-sections {
+  display: grid;
+  gap: 26px;
+  margin: 30px 0 34px;
+}
+
+.home-section {
+  padding-top: 4px;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.section-head h2 {
+  margin: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.section-head a {
+  flex: 0 0 auto;
+  font-size: 14px;
+}
