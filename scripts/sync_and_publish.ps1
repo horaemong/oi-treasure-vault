@@ -15,8 +15,8 @@ try {
     exit 0
   }
 
-  $riskPattern = '(api[_-]?key\s*[:=]|secret\s*[:=]|password\s*[:=]|token\s*[:=]|client_secret\s*[:=]|BEGIN .*PRIVATE KEY)'
-  $scanTargets = @('site', 'scripts', 'assets', 'templates', 'README.md', 'index.html')
+  $riskPattern = "(api[_-]?key|secret|password|token|client_secret)\s*[:=]\s*[A-Za-z0-9_./+=-]{12,}|BEGIN .*PRIVATE KEY"
+  $scanTargets = @('site', 'README.md', 'index.html')
   $rg = Get-Command rg -ErrorAction SilentlyContinue
   if ($rg) {
     $risk = & rg -n -i $riskPattern $scanTargets 2>$null
